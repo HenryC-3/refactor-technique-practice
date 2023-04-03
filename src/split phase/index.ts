@@ -14,10 +14,10 @@ function priceOrder(
 	quantity: number,
 	shippingMethod: ShippingMethod
 ) {
-	// 阶段 1
+	// 阶段 1：计算数据
 	const priceData = calculatePricingData(product, quantity, shippingMethod);
 
-	// 阶段 2
+	// 阶段 2：计算价格
 	const price = applyPrice(priceData);
 	return price;
 }
