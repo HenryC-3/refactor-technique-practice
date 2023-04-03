@@ -15,18 +15,23 @@ function priceOrder(
 	shippingMethod: ShippingMethod
 ) {
 	// 阶段 1
-	const basePrice = product.basePrice * quantity;
-	const discount =
-		Math.max(quantity - product.discountThreshold, 0) *
-		product.basePrice *
-		product.discountRate;
-
-	const priceData = { basePrice, shippingMethod, quantity, discount };
+	const priceData = calculatePricingData(product, quantity, shippingMethod);
 
 	// 阶段 2
 	const price = applyPrice(priceData);
 	return price;
 }
+
+function calculatePricingData(product: Product, quantity: number, shippingMethod: ShippingMethod) {
+	const basePrice = product.basePrice * quantity;
+	const discount = Math.max(quantity - product.discountThreshold, 0) *
+		product.basePrice *
+		product.discountRate;
+
+	const priceData = { basePrice, shippingMethod, quantity, discount };
+	return priceData;
+}
+
 function applyPrice(data: {
 	basePrice: number;
 	shippingMethod: ShippingMethod;
