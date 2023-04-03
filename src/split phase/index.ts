@@ -21,16 +21,24 @@ function priceOrder(
 		product.basePrice *
 		product.discountRate;
 
+	const priceData = { basePrice, shippingMethod, quantity, discount };
+
 	// 阶段 2
-	const price = applyPrice(basePrice, shippingMethod, quantity, discount);
+	const price = applyPrice(priceData);
 	return price;
 }
-function applyPrice(basePrice: number, shippingMethod: ShippingMethod, quantity: number, discount: number) {
-	const shippingPerCase = basePrice > shippingMethod.discountThreshold
-		? shippingMethod.discountedFee
-		: shippingMethod.feePerCase;
+function applyPrice(data: {
+	basePrice: number;
+	shippingMethod: ShippingMethod;
+	quantity: number;
+	discount: number;
+}) {
+	const { basePrice, shippingMethod, quantity, discount } = data
+	const shippingPerCase =
+		basePrice > shippingMethod.discountThreshold
+			? shippingMethod.discountedFee
+			: shippingMethod.feePerCase;
 	const shippingCost = quantity * shippingPerCase;
 	const price = basePrice - discount + shippingCost;
 	return price;
 }
-
