@@ -22,11 +22,15 @@ function priceOrder(
 		product.discountRate;
 
 	// 阶段 2
-	const shippingPerCase =
-		basePrice > shippingMethod.discountThreshold
-			? shippingMethod.discountedFee
-			: shippingMethod.feePerCase;
+	const price = applyPrice(basePrice, shippingMethod, quantity, discount);
+	return price;
+}
+function applyPrice(basePrice: number, shippingMethod: ShippingMethod, quantity: number, discount: number) {
+	const shippingPerCase = basePrice > shippingMethod.discountThreshold
+		? shippingMethod.discountedFee
+		: shippingMethod.feePerCase;
 	const shippingCost = quantity * shippingPerCase;
 	const price = basePrice - discount + shippingCost;
 	return price;
 }
+
