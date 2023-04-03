@@ -1,0 +1,26 @@
+{
+	"name": "ts-jest",
+	"type": "module",
+	"version": "1.0.0",
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"scripts": {
+		"dev": "tsup src/* --format esm --watch --no-splitting",
+		"test": "jest",
+		"build": "tsup src/* --format esm --no-splitting"
+	},
+	"devDependencies": {
+		"@types/jest": "^29.5.0",
+		"@types/node": "^18.15.11",
+		"@typescript-eslint/eslint-plugin": "^5.57.0",
+		"@typescript-eslint/parser": "^5.57.0",
+		"eslint": "^8.37.0",
+		"eslint-config-prettier": "^8.8.0",
+		"jest": "^29.5.0",
+		"prettier": "^2.8.7",
+		"ts-jest": "^29.1.0",
+		"tsup": "^6.7.0",
+		"typescript": "^5.0.3"
+	}
+}
